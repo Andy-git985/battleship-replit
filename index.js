@@ -15,10 +15,10 @@ const Gameboard = () => {
     board[ship] = coordinates
   }
   
-  const receiveAttack = (x) => {
     
-  }
-  return {}
+  
+  return {board, placeShip}
 }
 
-module.exports = Ship
+exports.Ship = Ship
+exports.Gameboard = Gameboard
