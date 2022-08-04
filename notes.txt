@@ -1,0 +1,76 @@
+var board = {'ship1':[0,1,2],'ship2':[3,4,5]}
+var hit = 1
+for (const e of Object.values(board)) {
+  if (e.includes(hit)) {
+    console.log('hit')
+  } else {
+    console.log('miss')
+  }
+}
+
+var board = new Array(100).fill('')
+
+// while loop for hitting
+function oneZero() {
+  return Math.floor(Math.random() * 2)
+}
+
+while (oneZero()) {
+  console.log('hit')
+  oneZero()
+}
+console.log('missed')
+
+
+
+let playing = true
+const Player = (name) => {
+  const doTurn = () => {
+    console.log(`${name}'s turn`)
+    const result = Math.floor(Math.random() * 2)
+    if (result === 1) {
+      end = true
+    }
+  }
+  return {doTurn}
+}
+
+let end
+const player1 = Player('John')
+const player2 = Player('Math')
+while (playing) {
+  player1.doTurn()
+  player2.doTurn()
+} if (end) {
+  console.log('game done')
+  break
+  
+}
+ }
+
+
+============
+
+let playing = true
+const Player = (name) => {
+  const doTurn = () => {
+    const result = Math.floor(Math.random() * 2)
+    console.log(`${name}'s turn: ${result}`)
+    if (result === 1) {
+      playing = false
+      end = true
+    }
+  }
+  return {doTurn}
+}
+
+let end
+const player1 = Player('Sam')
+const player2 = Player('Karen')
+while (playing) {
+  player1.doTurn()
+  player2.doTurn()
+} if (end) {
+  console.log('game done')
+} 
+
