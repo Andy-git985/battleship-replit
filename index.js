@@ -1,67 +1,31 @@
 const Ship = (length) => {
-  const hits = []
-  const hit = (x) => {
-    hits.push(x)
-  }
-  const isSunk = () => hits.length === length
-  return {
-    hit, isSunk
-  }
-}
+  const hits = [];
+  const hit = (x) => hits.push(x);
+  const isSunk = () => hits.length === length;
+  return { length, hits, hit, isSunk };
+};
 
-const Gameboard = () => {
-  let hit;
-  const board = new Array(100).fill('')
-  const placeShip = (ship, coordinates) => {
-    coordinates.forEach(coordinate => board[coordinate] = ship)
-  }
-
-  const receiveAttack = (coordinate) => {
-    if (board[coordinate]) {
-      // register hit
-      hit = true
-    } else {
-      board[coordinate] = 'miss'
-      // dom miss board
-      hit = false
-    }
-  }
-
-  const checkBoard = () => {
-    if (hit) {
-      const shipSearch = board.filter(e => e === e.includes('ship'))
-      if (!shipSearch.length) {
-        // gameover
-      }
-    } else {
-      return false
-    }
-  }
-
-  const viewBoard = () => board.filter(e => e)
-  return { board, placeShip, viewBoard, receiveAttack, checkBoard }
-}
+const Gameboard = (() => {
+  const board = Array(9).fill('');
+  const hits = [];
+  const misses = [];
+  const placeShip = (ship, coordinate) => {
+    board[coordinate] = ship;
+  };
+  const receiveAttack = (x) => {
+    return board[x] !== '' ? hits.push(x) : miss.pudh(x)
+  };
+  const checkShips = () => {
+    return board.every((e) => typeof e === 'string');
+  };
+  return { board, hits, misses, placeShip, receiveAttack, checkShips };
+})();
 
 const Player = () => {
-  const start()
-
-  return {}
+  const prototype = Gameboard
+  const attack = (enemy, coordinate) => enemy.receiveAttack(coordinate)
+  return Object.assign({}, prototype, {attack})
 }
-
-const player1 = Player()
-const player2 = Player()
-
-// player.start()
-// gameboard.receiveAttack()
-// while (gameboard.checkBoard()) {
-//   // console.log('hit')
-//   gameboard.receiveAttack()
-//   gameboard.check()
-// }
-// player.end()
-
-
-
 
 exports.Ship = Ship
 exports.Gameboard = Gameboard
